@@ -1,0 +1,30 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Variables
+@import 'variables';
+
+// Custom Css
+
+.btn {
+  border: none;
+  border-radius: 0;
+}
+
+.btn-primary {
+  background: lighten($primary-color, 5);
+  &:hover {
+    background: $primary-color;
+  }
+}
+
+.modal-header {
+
+  border-radius: 0;
+  background: $primary-color;
+  color: #fff;
+
+  .close {
+    color: #fff;
+  }
+}
+

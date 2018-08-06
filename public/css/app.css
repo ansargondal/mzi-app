@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+.btn {
+  border: none;
+  border-radius: 0;
+}
+
+.btn-primary {
+  background: #2c3237;
+}
+
+.btn-primary:hover {
+  background: #212529;
+}
+
+.modal-header {
+  border-radius: 0;
+  background: #212529;
+  color: #fff;
+}
+
+.modal-header .close {
+  color: #fff;
+}
