@@ -12,7 +12,7 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Plateform</th>
+                        <th>Platform</th>
                         <th>Type</th>
                         <th>EAN</th>
                         <th>SKU</th>
@@ -21,59 +21,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>Random plateform</td>
-                        <td>Random Type</td>
-                        <td>My EAN</td>
-                        <td>My SKU</td>
-                        <td>Demo Brand</td>
-                        <td>Some Title</td>
-                    </tr>
-                    <tr>
-                        <td>01</td>
-                        <td>Random plateform</td>
-                        <td>Random Type</td>
-                        <td>My EAN</td>
-                        <td>My SKU</td>
-                        <td>Demo Brand</td>
-                        <td>Some Title</td>
-                    </tr><tr>
-                        <td>01</td>
-                        <td>Random plateform</td>
-                        <td>Random Type</td>
-                        <td>My EAN</td>
-                        <td>My SKU</td>
-                        <td>Demo Brand</td>
-                        <td>Some Title</td>
-                    </tr><tr>
-                        <td>01</td>
-                        <td>Random plateform</td>
-                        <td>Random Type</td>
-                        <td>My EAN</td>
-                        <td>My SKU</td>
-                        <td>Demo Brand</td>
-                        <td>Some Title</td>
-                    </tr><tr>
-                        <td>01</td>
-                        <td>Random plateform</td>
-                        <td>Random Type</td>
-                        <td>My EAN</td>
-                        <td>My SKU</td>
-                        <td>Demo Brand</td>
-                        <td>Some Title</td>
-                    </tr>
-                    <tr>
-                        <td>01</td>
-                        <td>Random plateform</td>
-                        <td>Random Type</td>
-                        <td>My EAN</td>
-                        <td>My SKU</td>
-                        <td>Demo Brand</td>
-                        <td>Some Title</td>
-                    </tr>
+                    @foreach($listings as $list)
+                        <tr>
+                            <td>{{$list->id}}</td>
+                            <td>{{$list->platform}}</td>
+                            <td>{{$list->type}}</td>
+                            <td>{{$list->ean}}</td>
+                            <td>{{$list->sku}}</td>
+                            <td>{{$list->brand}}</td>
+                            <td>{{$list->title}}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
+
+                {{$listings->links()}}
             </div>
         </div>
     </div>

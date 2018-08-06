@@ -17,3 +17,5 @@ Route::get('/', function () {
     return view('admin/index');
 });
 
+Route::resource('listings', 'ListingController');
+

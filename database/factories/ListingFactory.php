@@ -5,7 +5,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Listing::class, function (Faker $faker) {
 
-
     return [
         'platform' => 'SOUQ',
         'type' => 'MP',
