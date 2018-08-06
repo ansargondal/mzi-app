@@ -17,6 +17,23 @@
   }
 }
 
+.table thead {
+  background: lighten($primary-color, 8);
+  color: #fff;
+  th {
+    border: 1px solid rgba(255, 255, 255, .1);
+  }
+}
+
+.pagination a.page-link {
+  color: $primary-color;
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  background: lighten($primary-color, 8);
+}
+
 .modal-header {
 
   border-radius: 0;

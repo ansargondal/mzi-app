@@ -12,6 +12,24 @@
   background: #212529;
 }
 
+.table thead {
+  background: #333940;
+  color: #fff;
+}
+
+.table thead th {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pagination a.page-link {
+  color: #212529;
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  background: #333940;
+}
+
 .modal-header {
   border-radius: 0;
   background: #212529;
