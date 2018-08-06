@@ -20,46 +20,41 @@ class CreateListingsTable extends Migration
             $table->string('ean');
             $table->string('sku');
             $table->string('clean_sku')->nullable();
-            $table->string('clean_sku')->nullable();
             $table->string('sku_type')->nullable();
             $table->string('category')->nullable();
             $table->string('brand')->nullable();
             $table->string('title')->nullable();
             $table->string('condition')->nullable();
-            $table->integer('our_inventory_quantity');
+            $table->integer('our_inventory_quantity')->nullable();
+            $table->double('msp', 8, 4)->default(12.0000);
+            $table->double('mxsp', 8, 4)->nullable();
+            $table->double('our_price', 8, 2)->nullable();
+            $table->double('our_sale_price', 8, 2)->default(0, 00);
+            $table->double('new_price', 8, 4)->nullable();
+            $table->double('price_difference', 8, 4)->nullable();
+            $table->double('seller_price', 8, 4)->nullable();
+            $table->double('seller_sale_price', 8, 2)->nullable();
+            $table->string('seller')->nullable();
+            $table->double('seller_rating')->nullable();
+            $table->integer('other_offer')->nullable();
+            $table->integer('available_offer')->nullable();
+            $table->tinyInteger('top_seller')->default(0);
+            $table->integer('seller_handling_time')->nullable();
+            $table->integer('available_offers')->nullable();
+            $table->tinyInteger('top_ean')->default(0);
+            $table->integer('our_handling_time')->nullable();
+            $table->string('inventory_status')->nullable();
+            $table->timestamp('price_updated_at')->nullable();
+            $table->timestamp('price_checked_at')->nullable();
+            $table->string('comment')->nullable();
+            $table->string('last_checked_by')->nullable();
+            $table->string('fb_status')->nullable();
+            $table->tinyInteger('is_active')->default(1);
+            $table->dateTime('action_requested_at')->nullable();
+            $table->addColumn('tinyInteger', 'action_pending', ['length' => 4, 'default' => '0']);
 
 
-            /**
-             *
-             * `our_inventory_quantity` int(11) DEFAULT NULL,
-             * `msp` double(8,4) NOT NULL DEFAULT 12.0000,
-             * `mxsp` double(8,4) DEFAULT NULL,
-             * `our_price` double(8,4) DEFAULT NULL,
-             * `our_sale_price` double(8,2) DEFAULT 0.00,
-             * `new_price` double(8,4) DEFAULT NULL,
-             * `price_difference` double(8,4) DEFAULT NULL,
-             * `seller_price` double(8,4) DEFAULT NULL,
-             * `seller_sale_price` double(8,2) DEFAULT NULL,
-             * `seller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-             * `seller_rating` double DEFAULT NULL,
-             * `seller_handling_time` int(11) DEFAULT NULL,
-             * `other_offer` int(11) DEFAULT NULL,
-             * `available_offers` int(11) DEFAULT NULL,
-             * `top_ean` tinyint(1) NOT NULL DEFAULT 0,
-             * `top_seller` tinyint(1) NOT NULL DEFAULT 0,
-             * `our_handling_time` int(11) DEFAULT NULL,
-             * `inventory_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-             * `price_updated_at` timestamp NULL DEFAULT NULL,
-             * `price_checked_at` timestamp NULL DEFAULT NULL,
-             * `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-             * `last_checked_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-             * `fb_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-             * `is_active` tinyint(1) NOT NULL DEFAULT 1,
-             * `action_requested_at` datetime DEFAULT NULL,
-             * `action_pending` tinyint(4) DEFAULT 0,
-             * PRIMARY KEY (`id`),
-             * KEY `unique_key` (`platform`,`type`,`ean`)
-             */
+            $table->unique(['plateform', 'type', 'ean']);
             $table->timestamps();
         });
     }
