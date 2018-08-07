@@ -1,7 +1,7 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="upload-csv-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="{{route('listings.store')}}" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title">Upload CSV</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

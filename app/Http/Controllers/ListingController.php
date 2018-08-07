@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ListingRequest;
 use App\Listing;
-use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
@@ -25,8 +25,9 @@ class ListingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.listing.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -34,53 +35,46 @@ class ListingController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ListingRequest $request)
     {
-        //
-    }
+        $path = $request->file('csv_file')->getRealPath();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $rows = array_map('str_getcsv', file($path));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $listings = ['id', 'platform', 'type', 'ean', 'sku', 'clean_sku', 'sku_type',
+            'category', 'brand', 'title', 'condition', 'our_inventory_quantity', 'msp', 'mxsp',
+            'our_price', 'our_sale_price', 'new_price', 'price_difference', 'seller_price', 'seller_sale_price',
+            'seller', 'seller_rating', 'other_offer', 'available_offer', 'top_seller', 'seller_handling_time',
+            'available_offers', 'top_ean', 'our_handling_time', 'inventory_status', 'price_updated_at',
+            'price_checked_at', 'comment', 'last_checked_by', 'fb_status', 'is_active', 'action_requested_at',
+            'action_pending', 'created_at', 'updated_at'
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $listings_array = [];
+        foreach ($rows as $row) {
+            foreach ($row as $key => $column) {
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+                //platform value will always be SOUQ
+                if ($listings[$key] === 'platform') {
+
+                    $listings_array[$listings[$key]] = 'SOUQ';
+
+                    //if user has checked the fb checkbox
+                } elseif ($request->has('fb') && $listings[$key] == 'type') {
+
+                    $listings_array[$listings[$key]] = 'FB';
+
+                } else {
+
+                    $listings_array[$listings[$key]] = $column;
+                }
+            }
+
+            //create the listing row in database
+            Listing::create($listings_array);
+        }
+
+
+        return redirect(route('listings.index'))->withMessage('CSV file has been imported!');
     }
 }

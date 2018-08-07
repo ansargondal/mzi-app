@@ -29,6 +29,10 @@
   color: $primary-color;
 }
 
+.form-upload {
+  border: 1px solid rgba(0, 0, 0, .5);
+}
+
 .page-item.active .page-link {
   color: #fff;
   background: lighten($primary-color, 8);

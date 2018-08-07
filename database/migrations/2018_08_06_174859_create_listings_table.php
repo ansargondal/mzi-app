@@ -54,7 +54,7 @@ class CreateListingsTable extends Migration
             $table->addColumn('tinyInteger', 'action_pending', ['length' => 4, 'default' => '0']);
 
 
-            $table->unique(['plateform', 'type', 'ean']);
+            $table->unique(['type', 'ean']);
             $table->timestamps();
         });
     }

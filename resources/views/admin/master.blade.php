@@ -17,6 +17,9 @@
 </head>
 <body>
 
+{{--Navigation Included --}}
+@include('admin/partials/navigation')
+
 @yield('content')
 
 <!-- Optional JavaScript -->

@@ -1,13 +1,16 @@
 @extends('admin/master')
 
 @section('content')
-
-    {{--Navigation Included --}}
-    @include('admin/partials/navigation')
     <div class="container pt-5">
+        @if(isset($message))
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Success!</h4>
+                <p>{{$message}}</p>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
-                <a href="#upload-csv-modal" data-toggle="modal" class="btn btn-primary mb-3">Upload CSV</a>
+                <a href="{{route('listings.create')}}" class="btn btn-primary mb-3">Upload CSV</a>
                 <table class="table table-bordered table-hover table-responsive">
                     <thead>
                     <tr>
