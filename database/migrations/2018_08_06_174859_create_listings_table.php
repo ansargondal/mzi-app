@@ -36,12 +36,11 @@ class CreateListingsTable extends Migration
             $table->double('seller_sale_price', 8, 2)->nullable();
             $table->string('seller')->nullable();
             $table->double('seller_rating')->nullable();
-            $table->integer('other_offer')->nullable();
-            $table->integer('available_offer')->nullable();
-            $table->tinyInteger('top_seller')->default(0);
             $table->integer('seller_handling_time')->nullable();
+            $table->integer('other_offer')->nullable();
             $table->integer('available_offers')->nullable();
             $table->tinyInteger('top_ean')->default(0);
+            $table->tinyInteger('top_seller')->default(0);
             $table->integer('our_handling_time')->nullable();
             $table->string('inventory_status')->nullable();
             $table->timestamp('price_updated_at')->nullable();
@@ -50,12 +49,10 @@ class CreateListingsTable extends Migration
             $table->string('last_checked_by')->nullable();
             $table->string('fb_status')->nullable();
             $table->tinyInteger('is_active')->default(1);
+            $table->timestamps();
             $table->dateTime('action_requested_at')->nullable();
             $table->addColumn('tinyInteger', 'action_pending', ['length' => 4, 'default' => '0']);
-
-
             $table->unique(['type', 'ean']);
-            $table->timestamps();
         });
     }
 
