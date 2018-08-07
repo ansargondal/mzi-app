@@ -53,10 +53,8 @@ class ListingController extends Controller
         $listings_array = [];
         foreach ($rows as $row) {
 
-            $count = 0;
             foreach ($row as $key => $column) {
 
-//                echo $listings[$key] . ' ----   ' . $column . '<br>';
 //                //platform value will always be SOUQ
                 if ($listings[$key] === 'platform') {
 
@@ -69,7 +67,7 @@ class ListingController extends Controller
 
                 } else {
 
-                    $listings_array[$listings[$key]] = $column;
+                    $listings_array[$listings[$key]] = str_replace('\'', '', $column);
                 }
             }
 
