@@ -75,6 +75,7 @@ class ListingController extends Controller
 
 //            create the listing row in database
             Listing::create($listings_array);
+
         }
 
 
